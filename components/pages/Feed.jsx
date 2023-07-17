@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Card from '../ui/Card';
+import { Clipboard } from '@capacitor/clipboard';
+
 
 import {
   IonPage,
@@ -50,7 +52,15 @@ const Feed = () => {
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowNotifications(true)}>
+            <IonButton onClick={() => {
+              setShowNotifications(true);  
+              console.log('asdfasdf')
+              Clipboard.read()
+              .then(({ value: value_, type }) => {
+                console.log('### got clipboard value:\n', value_, type);
+              })
+            
+            }}>
               <IonIcon icon={notificationsOutline} />
             </IonButton>
           </IonButtons>
